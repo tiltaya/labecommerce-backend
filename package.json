@@ -4,7 +4,8 @@
   "description": "Exercícios e projeto do módulo 3 - back-end",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/index.js"
+    "start": "tsc && node ./build/index.js",
+    "start-database": "tsc && node ./build/database.js"
   },
   "repository": {
     "type": "git",
