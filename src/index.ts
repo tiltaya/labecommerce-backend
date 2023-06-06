@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { TUsers, TProducts } from "./types";
 
+// Exercícios de APIs e Express
 const app = express()
 
 app.use(express.json())
@@ -22,11 +23,11 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/ping', (req: Request, res: Response) => {
     res.send('Pong!')
 })
-
+// Mostrar todos os usuários
 app.get('/users', (req: Request, res: Response) => {
     res.status(200).send(users)
 })
-
+// Procura produtos por nome ou mostra todos os produtos
 app.get('/products', (req: Request, res: Response) => {
     const name = req.query.name as string
     if (!name) {
@@ -37,7 +38,7 @@ app.get('/products', (req: Request, res: Response) => {
     })
     res.status(200).send(productsByName)
 })
-
+// Criar novo user
 app.post('/users', (req: Request, res: Response) => {
     const {id, name, email, password} = req.body
     const newUser: TUsers = {id, name, email, password, createdAt: new Date().toISOString()}
@@ -45,7 +46,7 @@ app.post('/users', (req: Request, res: Response) => {
     res.status(201).send('Cadastro realizado com sucesso')
     console.log(users);
 })
-
+// Criar novo produto
 app.post('/products', (req: Request, res: Response) => {
     const {id, name, price, description, imageUrl} = req.body
     const newProduct: TProducts = {id, name, price, description, imageUrl}
@@ -54,7 +55,7 @@ app.post('/products', (req: Request, res: Response) => {
     console.log(products);
     
 })
-
+// Exercícios de Type e database
 export function createUser (id:string | number, name:string, email:string, password:string | number) {
     users.push({
         id, 
@@ -86,7 +87,7 @@ export function searchProductsByName (name:string) {
     console.log(searchProduct);
 }
 
-// RESPOSTA DOS EXERCÍCIOS
+// CHAMADA DOS EXERCÍCIOS DE TYPE E DATABASE
 
 // createUser("u003", "Astrodev", "astrodev@email.com", "astrodev99")
 
