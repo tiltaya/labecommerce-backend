@@ -1,0 +1,34 @@
+### Teste API
+GET http://localhost:3003/
+
+### Ping
+GET http://localhost:3003/ping
+
+### Get all users
+http://localhost:3003/users
+
+### Get all products
+http://localhost:3003/products
+
+### Create new user
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "id": "u003",
+    "name": "Taya",
+    "email": "taya@labenu.com",
+    "password": "taya123"
+}
+
+### Create new product
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "id": "prod003",
+    "name": "Memória RAM gamer",
+    "price": 470,
+    "description": "Pente de memória com luz RGB, 8GB",
+    "imageUrl": "https://cdn.dooca.store/1841/products/rgb-8gb.jpg?v=1658784978&webp=0"
+}
