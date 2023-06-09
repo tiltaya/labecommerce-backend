@@ -1,8 +1,8 @@
 export type TUsers = {
-    id: string | number,
+    id: string,
     name: string,
     email: string,
-    password: string | number,
+    password: string,
     createdAt: string
 }
 

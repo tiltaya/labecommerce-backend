@@ -53,10 +53,57 @@ app.post('/products', (req: Request, res: Response) => {
     products.push(newProduct)
     res.status(201).send('Produto cadastrado com sucesso')
     console.log(products);
-    
+})
+// Deletar user by id
+app.delete('/users/:id', (req: Request, res: Response) => {
+    const id = req.params.id
+    const findUserIndex = users.findIndex((user) => {
+        return user.id === id
+    })
+
+    if (findUserIndex >= 0) {
+        users.splice(findUserIndex, 1)
+        res.status(200).send('User apagado com sucesso')
+    } else {
+        res.status(200).send('User não encontrado')
+    }
+})
+// Deletar produto by id
+app.delete('/products/:id', (req: Request, res: Response) => {
+    const id = req.params.id
+    const findProductIndex = products.findIndex((product) => {
+        return product.id === id
+    })
+
+    if (findProductIndex >= 0) {
+        products.splice(findProductIndex, 1)
+        res.status(200).send('Produto apagado com sucesso')
+    } else {
+        res.status(200).send('Produto não encontrado')
+    }
+})
+// Editar produto por id
+app.put("/products/:id", (req: Request, res: Response) => {
+    const id = req.params.id
+    const {newId, name, price, description, imageUrl} = req.body
+
+    const findProducts = products.find((product) => {
+        return product.id === id
+    })
+
+    if (findProducts) {
+        findProducts.id = newId || findProducts.id
+        findProducts.name = name || findProducts.name
+        findProducts.price = price || findProducts.price
+        findProducts.description = description || findProducts.description
+        findProducts.imageUrl = imageUrl || findProducts.imageUrl
+        res.status(200).send('Produto atualizado com sucesso')
+    } else {
+        res.status(200).send('Produto não encontrado')
+    }
 })
 // Exercícios de Type e database
-export function createUser (id:string | number, name:string, email:string, password:string | number) {
+export function createUser (id:string, name:string, email:string, password:string) {
     users.push({
         id, 
         name, 
