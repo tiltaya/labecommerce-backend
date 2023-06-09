@@ -32,3 +32,21 @@ Content-Type: application/json
     "description": "Pente de memória com luz RGB, 8GB",
     "imageUrl": "https://cdn.dooca.store/1841/products/rgb-8gb.jpg?v=1658784978&webp=0"
 }
+
+### Delete user by id
+DELETE http://localhost:3003/users/u001
+
+### Delete product by id
+DELETE http://localhost:3003/products/prod001
+
+### Edit product by id
+PUT http://localhost:3003/products/prod001
+Content-Type: application/json
+
+{
+    "id": "id_test",
+    "name": "product_name_test",
+    "price": 500,
+    "description": "Descrição de produto teste", 
+    "imageUrl": "https://edifier.com.br/pub/media/catalog/product/m/e/mecanica-produto-teste-nao-comprar-p-1533242083167_2.jpg"
+}
