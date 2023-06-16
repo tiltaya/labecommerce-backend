@@ -9,3 +9,5 @@ Typescript II - Criei 5 funções: createUser para criar um novo usuário, getAl
 APIs e Express - Criei 4 endpoints: "/", endpoint padrão, que é a primeira página e testa se a API está rodando, "/users", que mostra todos os usuários, "/products", que mostra todos os produtos e "ping", que foi requisito do exercício. Então foram criados 4 requests para a API: "Get all users", para mostrar todos os usuários, "Get products", que pode procurar produtos por nome ou mostrar a lista de produtos completa, "Create new user", para criar um novo usuário e "Create new product", para criar um novo produto. Foi adicionado o arquivo "request.rest" para enviar os requests direto do terminal do REST Client no VS Code.
 
 Aprofundamento Express - Implementei a função de deletar user pelo id, deletar produto pelo id, e editar produto pelo id.
+
+Fluxo de dados back-end - Refatorei todos endpoints com try/catch e adicionei verificações para lidar com valores incorretos.
