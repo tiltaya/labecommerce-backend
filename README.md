@@ -11,3 +11,5 @@ APIs e Express - Criei 4 endpoints: "/", endpoint padrão, que é a primeira pá
 Aprofundamento Express - Implementei a função de deletar user pelo id, deletar produto pelo id, e editar produto pelo id.
 
 Fluxo de dados back-end - Refatorei todos endpoints com try/catch e adicionei verificações para lidar com valores incorretos.
+
+Intro SQL - Criei o banco de dados e nele duas tabelas: "users" e "products". Populei users com 3 usuários e products com 5 produtos.
