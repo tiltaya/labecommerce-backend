@@ -15,3 +15,5 @@ Nesse repositório estão todos os exercícios e o projeto final do "módulo 3 -
 *Intro SQL* - Criei o banco de dados (src/database/labecommerce.db) e a página do SQLite (src/database/labecommerce.sql) e nela duas tabelas: "users" e "products". Populei users com 3 usuários e products com 5 produtos.
 
 *Aprofundamento SQL* - Em (src/database/labecommerce.sql) criei as queries que futuramente serão conectadas às suas respectivas requests da API.
+
+*Relações SQL I* - Implementei o sistema de relacionamento no banco de dados (src/database/labecommerce.sql) criando a tabela "purchases", populando ela com uma compra para cada usuário, e criando uma "nota fiscal" na query SELECT com JOIN onde ele coleta informações de ambas as tabelas para mostrar todas as informações da compra.
