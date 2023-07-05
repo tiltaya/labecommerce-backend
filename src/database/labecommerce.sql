@@ -11,9 +11,9 @@ CREATE TABLE if NOT EXISTS users (
 
 -- Inserting users
 INSERT INTO users (id, name, email, password, created_at)
-VALUES ("u001", "Taya", "taya@labenu.com.br", "taya123", "20/06/2023"),
-("u002", "Tilápia", "tilapia@labenu.com.br", "tilapia123", "20/06/2023"),
-("u003", "Eddie", "eddie@labenu.com.br", "eddie123", "20/06/2023");
+VALUES ("u001", "Taya", "taya@labenu.com.br", "taya123", DATETIME("now")),
+("u002", "Tilápia", "tilapia@labenu.com.br", "tilapia123", DATETIME("now")),
+("u003", "Eddie", "eddie@labenu.com.br", "eddie123", DATETIME("now"));
 
 -- Criation of the "products" table
 CREATE TABLE if NOT EXISTS products (
@@ -44,7 +44,7 @@ WHERE name LIKE "%gamer%";
 
 -- Create User
 INSERT INTO users (id, name, email, password, created_at)
-VALUES ("u004", "Johannes", "johannes@labenu.com.br", "johannes123", "21/06/2023");
+VALUES ("u004", "Johannes", "johannes@labenu.com.br", "johannes123", DATETIME("now"));
 
 -- Create Product
 INSERT INTO products (id, name, price, description, image_url)
@@ -74,6 +74,8 @@ CREATE TABLE if NOT EXISTS purchases (
     total_price REAL NOT NULL,
     created_at TEXT NOT NULL,
     Foreign Key (buyer) REFERENCES users(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- Get all purchases
@@ -81,9 +83,9 @@ SELECT * FROM purchases;
 
 -- Inserting purchases
 INSERT INTO purchases (id, buyer, total_price, created_at)
-VALUES ("p001", "u003", "1200", "6/26/23"),
-("p002", "u001", "2400", "6/20/23"),
-("p003", "u002", "870", "6/12/23");
+VALUES ("p001", "u003", "800", DATETIME("now")),
+("p002", "u001", "1800", DATETIME("now")),
+("p003", "u002", "1730", DATETIME("now"));
 
 -- Editing purchases
 UPDATE purchases
@@ -100,3 +102,34 @@ WHERE id = "p003";
 SELECT purchases.id, purchases.buyer, users.name, users.email, purchases.total_price, purchases.created_at
 FROM users
 JOIN purchases ON purchases.buyer = users.id;
+
+CREATE TABLE if NOT EXISTS purchases_products (
+    purchase_id TEXT NOT NULL,
+    product_id TEXT NOT NULL,
+    quantity INTEGER NOT NULL,
+    Foreign Key (purchase_id) REFERENCES purchases(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    Foreign Key (product_id) REFERENCES products(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+INSERT INTO purchases_products (purchase_id, product_id, quantity)
+VALUES ("p001", "prod001", 1),
+       ("p001", "prod003", 1),
+       ("p002", "prod002", 2),
+       ("p003", "prod004", 1),
+       ("p003", "prod005", 3);
+
+SELECT * FROM purchases_products;
+
+SELECT
+    purchases.id AS purchaseId,
+    products.id AS productId,
+    products.name AS productName,
+    products.price,
+    purchases_products.quantity
+FROM purchases_products
+LEFT JOIN products ON purchases_products.product_id = products.id
+INNER JOIN purchases ON purchases_products.purchase_id = purchases.id;
