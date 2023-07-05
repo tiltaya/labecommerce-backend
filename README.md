@@ -12,8 +12,12 @@ Nesse repositório estão todos os exercícios e o projeto final do "módulo 3 -
 
 *Fluxo de dados back-end* - Em "index.ts" (src/index.ts) refatorei todos endpoints com try/catch e adicionei verificações para lidar com valores incorretos.
 
-*Intro SQL* - Criei o banco de dados (src/database/labecommerce.db) e a página do SQLite (src/database/labecommerce.sql) e nela duas tabelas: "users" e "products". Populei users com 3 usuários e products com 5 produtos.
+*Introdução SQL* - Criei o banco de dados (src/database/labecommerce.db) e a página do SQLite (src/database/labecommerce.sql) e nela duas tabelas: "users" e "products". Populei users com 3 usuários e products com 5 produtos.
 
 *Aprofundamento SQL* - Em (src/database/labecommerce.sql) criei as queries que futuramente serão conectadas às suas respectivas requests da API.
 
 *Relações SQL I* - Implementei o sistema de relacionamento no banco de dados (src/database/labecommerce.sql) criando a tabela "purchases", populando ela com uma compra para cada usuário, e criando uma "nota fiscal" na query SELECT com JOIN onde ele coleta informações de ambas as tabelas para mostrar todas as informações da compra.
+
+*Relações SQL II* - Criei a tabela "purchases_products" e nela ficará salva a informação do id da compra feita em "purchases", o id dos produtos que foram comprados e a quantidade de cada produto. Depois criei uma relação com "products" e "purchases" para mostrar todas as informações da compra: id da compra, id dos produtos, nome dos produtos, preço dos produtos e quantidade de cada produto comprada. 
+
+*Introdução Knex* - Com a implementação do Knex, o uso do banco de dados mockado "database.ts" (src/database.ts) se tornou obsoleto. Então, todos os endpoints em "index.ts" (src/index.ts) tiveram que ser refatorados para que as informações sejam conectadas direto no banco de dados SQLite (src/database/labecommerce.sql).
