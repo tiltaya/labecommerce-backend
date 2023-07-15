@@ -1,13 +1,17 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { db } from '../../knex'
+import { TPurchase } from '../../../types'
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
 app.use(cors())
 
-// Add new purchase
+// Add new purchase - FORMATO DIFERENTE DO REPO DO PROJETO
+
+// app.post('/purchases', async (req: Request<{}, TPurchase, TPurchase>, res: Response) => {
+
 app.post('/purchases', async (req: Request, res: Response) => {
     try {
         const {id, buyer, total_price} = req.body
@@ -22,7 +26,6 @@ app.post('/purchases', async (req: Request, res: Response) => {
                 res.status(400)
                 throw new Error ('O id deve ter o formato "p00x", onde X será o número da compra.')
             }
-
         }
 
         if (buyer !== undefined) {
@@ -33,17 +36,22 @@ app.post('/purchases', async (req: Request, res: Response) => {
         }
 
         if (total_price !== undefined) {
-            if (typeof(buyer) !== 'string') {
+            if (typeof(total_price) !== 'string') {
             res.status(422)
             throw new Error ('O valor "total_price" deve ser em formato de texto')
             }
         }
-        
-        const result = await db.raw(`
-        INSERT INTO purchases (id, buyer, total_price, created_at)
-        VALUES ("${id}", "${buyer}", "${total_price}", DATETIME("now"));`)
-        res.status(200).send('Compra cadastrada com sucesso')
 
+        const newPurchase = {
+            id: id,
+            buyer: buyer,
+            total_price: total_price,
+            created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        }
+        
+        await db("purchases").insert(newPurchase)
+
+        res.status(201).send('Pedido realizado com sucesso')
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message)

@@ -7,23 +7,23 @@ export const app = express()
 app.use(express.json())
 app.use(cors())
 
-// Delete product by id
-app.delete('/products/:id', async (req: Request, res: Response) => {
+// Delete purchase by id
+app.delete('/purchases/:id', async (req: Request, res: Response) => {
     try {
         const idToDelete = req.params.id
-        const productId = await db("products").where({id: idToDelete})
+        const purchaseId = await db("purchases").where({id: idToDelete})
     
-        if (!productId) {
+        if (!purchaseId) {
             res.statusCode = 404
-            throw new Error ('Produto não encontrado. Verifique o id.')
+            throw new Error ('Compra não encontrada. Verifique o id.')
         }
     
-        if (productId) {
-            await db("products").del().where({id: idToDelete})
+        if (purchaseId) {
+            await db("purchases").del().where({id: idToDelete})
         
-            res.status(200).send('Produto apagado com sucesso')
+            res.status(200).send('Pedido cancelado com sucesso')
         } else {
-            res.status(200).send('Produto não encontrado')
+            res.status(200).send('Compra não encontrada.')
         }
     } catch (error) {
         if (error instanceof Error) {

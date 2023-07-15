@@ -7,22 +7,12 @@ export const app = express()
 app.use(express.json())
 app.use(cors())
 
-// Procurar produtos por id
-app.get('/products/:id', async (req: Request, res: Response) => {
+// Get all purchases
+app.get('/purchases', async (req: Request, res: Response) => {
     try {
-        const id = req.params.id
-
-        if (id !== undefined) {
-            if (typeof(id) !== 'string') {
-            res.status(422)
-            throw new Error ('O valor buscado deve ser uma string')
-            }
-        }
-
-        const result = await db("products").select("*").where("id", "LIKE", `%${id}%`)
+        const result = await db("purchases")
 
         res.status(200).send(result)
-
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message)

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { db } from '../../knex'
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
 app.use(cors())
@@ -10,23 +10,23 @@ app.use(cors())
 // Procura produtos por nome ou mostra todos os produtos
 app.get('/products', async (req: Request, res: Response) => {
     try {
-        const q = req.query.q
+        const search = req.query.search
 
-        if (q !== undefined) {
-            if (typeof(q) !== 'string') {
+        if (search !== undefined) {
+            if (typeof(search) !== 'string') {
             res.status(422)
-            throw new Error ('O valor buscado deve ser uma string')
+            throw new Error ('O valor buscado deve ser do tipo  texto.')
             }
         }
 
-        if (q === undefined) {
-            const result = await db.raw(`SELECT * FROM products;`)
+        if (search === undefined) {
+            const result = await db.select("*").from("products")
+
             res.status(200).send(result)
         }
-        
-        const result = await db.raw(`
-        SELECT * FROM products
-        WHERE name LIKE '%${q}%';`)
+
+        const result = await db("products").select("*").where("name", "LIKE", `%${search}%`)
+
         res.status(200).send(result)
 
     } catch (error) {

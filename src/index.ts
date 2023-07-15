@@ -1,12 +1,16 @@
-import { users, products } from "./database";
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { db } from "./database/knex";
+import { app as productsRouter } from "./database/endpoints/products/productRouter";
+import { app as purchasesRouter } from "./database/endpoints/purchases/purchasesRouter";
+import { app as usersRouter } from "./database/endpoints/users/usersRouter";
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
+app.use(productsRouter)
+app.use(purchasesRouter)
+app.use(usersRouter)
 
 app.listen(3003, () => {
     console.log('Servidor rodando na porta 3003');
@@ -23,36 +27,36 @@ app.get('/ping', (req: Request, res: Response) => {
 })
 
 // Exercícios de Type e database
-export function createUser (id:string, name:string, email:string, password:string) {
-    users.push({
-        id, 
-        name, 
-        email, 
-        password, 
-        createdAt: new Date().toISOString()
-    })
-    console.log("Cadastro realizado com sucesso!");
-    console.table(users)
-}
+// export function createUser (id:string, name:string, email:string, password:string) {
+//     users.push({
+//         id, 
+//         name, 
+//         email, 
+//         password, 
+//         createdAt: new Date().toISOString()
+//     })
+//     console.log("Cadastro realizado com sucesso!");
+//     console.table(users)
+// }
 
-export function getAllUsers () {
-    console.table(users)
-}
+// export function getAllUsers () {
+//     console.table(users)
+// }
 
-export function createProduct (id:string, name:string, price: number, description:string, imageUrl:string) {
-    products.push({id, name, price, description, imageUrl})
-    console.log("Produto criado com sucesso!");
-    console.log(products)
-}
+// export function createProduct (id:string, name:string, price: number, description:string, imageUrl:string) {
+//     products.push({id, name, price, description, imageUrl})
+//     console.log("Produto criado com sucesso!");
+//     console.log(products)
+// }
 
-export function getAllProducts () {
-    console.log(products)
-}
+// export function getAllProducts () {
+//     console.log(products)
+// }
 
-export function searchProductsByName (name:string) {
-    const searchProduct = products.filter((product) => product.name.includes(name))
-    console.log(searchProduct);
-}
+// export function searchProductsByName (name:string) {
+//     const searchProduct = products.filter((product) => product.name.includes(name))
+//     console.log(searchProduct);
+// }
 
 // CHAMADA DOS EXERCÍCIOS DE TYPE E DATABASE
 

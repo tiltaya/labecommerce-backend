@@ -1,23 +1,64 @@
-# labecommerce-backend
+# Projeto Labecommerce Back-end
 
-Nesse repositório estão todos os exercícios e o projeto final do "módulo 3 - back-end" do bootcamp Labenu.
+## Índice
 
-*Typescript I* - Primeiramente adicionei o arquivo "index.ts" (src/index.ts), "database.ts" (src/database.ts) com os arrays "users" e "products", e "types.ts" (src/types.ts) para setar os types dos arrays de database.ts.
+- <a href="#-funcionalidades">Funcionalidades do Projeto</a>
+- <a href="#-rodar">Como rodar o projeto?</a>
+- <a href="#-tecnologias-utilizadas">Tecnologias utilizadas</a>
+- <a href="#-autoras">Pessoas autoras</a>
 
-*Typescript II* - Em "index.ts" (src/index.ts) criei 5 funções: createUser para criar um novo usuário, getAllUsers para mostrar a lista com todos os usuários, createProduct para criar um novo produto, getAllProducts para mostrar a lista com todos os produtos e searchProductsByName para filtrar os produtos desejados por nome.
+## Funcionalidades do Projeto
 
-*APIs e Express* - Em "index.ts" (src/index.ts) criei 4 endpoints: "/", endpoint padrão, que é a primeira página e testa se a API está rodando, "/users", que mostra todos os usuários, "/products", que mostra todos os produtos e "ping", que foi requisito do exercício. Então foram criados 4 requests para a API: "Get all users", para mostrar todos os usuários, "Get products", que pode procurar produtos por nome ou mostrar a lista de produtos completa, "Create new user", para criar um novo usuário e "Create new product", para criar um novo produto. Foi adicionado o arquivo "request.rest" para enviar os requests direto do terminal do REST Client no VS Code.
+### Funcionalidades da tabela "users"
 
-*Aprofundamento Express* - Em "index.ts" (src/index.ts) implementei a função de deletar user pelo id, deletar produto pelo id, e editar produto pelo id.
+- [X] Adicionar novo usuário
+- [X] Deletar usuário pelo id
+- [X] Trazer todos os usuários
 
-*Fluxo de dados back-end* - Em "index.ts" (src/index.ts) refatorei todos endpoints com try/catch e adicionei verificações para lidar com valores incorretos.
+### Funcionalidades da tabela "products"
 
-*Introdução SQL* - Criei o banco de dados (src/database/labecommerce.db) e a página do SQLite (src/database/labecommerce.sql) e nela duas tabelas: "users" e "products". Populei users com 3 usuários e products com 5 produtos.
+- [X] Adicionar novo produto
+- [X] Deletar produto pelo id
+- [X] Editar produto pelo id
+- [X] Trazer todos os produtos
+- [X] Trazer produto pelo id
 
-*Aprofundamento SQL* - Em (src/database/labecommerce.sql) criei as queries que futuramente serão conectadas às suas respectivas requests da API.
+### Funcionalidades da tabela "purchases"
 
-*Relações SQL I* - Implementei o sistema de relacionamento no banco de dados (src/database/labecommerce.sql) criando a tabela "purchases", populando ela com uma compra para cada usuário, e criando uma "nota fiscal" na query SELECT com JOIN onde ele coleta informações de ambas as tabelas para mostrar todas as informações da compra.
+- [X] Adicionar nova compra
+- [X] Deletar compra pelo id
+- [X] Editar produto pelo id
+- [X] Trazer todas as compras
+- [X] Trazer compra pelo id
 
-*Relações SQL II* - Criei a tabela "purchases_products" e nela ficará salva a informação do id da compra feita em "purchases", o id dos produtos que foram comprados e a quantidade de cada produto. Depois criei uma relação com "products" e "purchases" para mostrar todas as informações da compra: id da compra, id dos produtos, nome dos produtos, preço dos produtos e quantidade de cada produto comprada. 
+## Como rodar o projeto?
 
-*Introdução Knex* - Com a implementação do Knex, o uso do banco de dados mockado "database.ts" (src/database.ts) se tornou obsoleto. Então, todos os endpoints em "index.ts" (src/index.ts) tiveram que ser refatorados para que as informações sejam conectadas direto no banco de dados SQLite (src/database/labecommerce.sql).
+```bash
+# Clone este repositório
+$ git clone https://github.com/tiltaya/labecommerce-backend.git
+
+# Acesse a pasta do projeto no seu terminal
+$ cd labecommerce-backend
+
+# Instale as dependências
+$ npm i
+
+# Execute a aplicação
+$ npm run dev
+
+# A aplicação será iniciada na porta 3003. Os testes devem ser feitos na API da aplicação: https://www.postman.com/tiltaya/workspace/labecommerce-back-end/documentation/26594539-92ddcf48-5f5f-4980-bf98-bd86a620f92e?entity=&branch=&version=
+```
+
+## Tecnologias utilizadas
+
+1. [Node.js] (https://nodejs.org/pt-br/about)
+2. [TypeScript] (https://www.typescriptlang.org/pt/)
+3. [Express] (https://expressjs.com/pt-br/)
+4. [SQLite] (https://www.sqlite.org/docs.html)
+5. [Knex] (https://knexjs.org/guide/)
+
+## Pessoas autoras
+
+![Tainá](./assets/img.jpeg)
+
+[LinkedIn] (https://www.linkedin.com/in/taina-alves-de-andrade/)

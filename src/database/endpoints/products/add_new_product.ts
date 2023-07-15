@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { db } from '../../knex'
 
-const app = express()
+export const app = express()
 
 app.use(express.json())
 app.use(cors())
@@ -52,15 +52,12 @@ app.post('/products', async (req: Request, res: Response) => {
             }
         }
 
-        // await db.raw(`
-        // INSERT INTO products (id, name, price, description, image_url)
-        // VALUES ("${id}", "${name}", "${price}", "${description}", "${image_url}");`)
-
         const newProduct = {
             id: id,
             name: name,
             price: price,
-            description: description,image_url: image_url
+            description: description,
+            image_url: image_url
         }
 
         await db("products").insert(newProduct)
