@@ -59,6 +59,6 @@ $ npm run dev
 
 ## Pessoas autoras
 
-![Tainá](./assets/img.jpeg)
+<img style="width:200px" src="./assets/img.jpeg" alt="Imagem de Tainá">
 
 [LinkedIn] (https://www.linkedin.com/in/taina-alves-de-andrade/)
