@@ -61,4 +61,4 @@ $ npm run dev
 
 <img style="width:200px" src="./assets/img.jpeg" alt="Imagem de Tainá">
 
-[LinkedIn] (https://linkedin.com/in/taina-alves-oliveira/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/taina-alves-oliveira/)
